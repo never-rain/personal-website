@@ -1,7 +1,7 @@
 {
   "name": "personal-website",
   "description": "My very new peronal website",
-  "version": "5.30.0",
+  "version": "5.31.0",
   "author": {
     "name": "Ralph Bolliger",
     "email": "ralph.bolliger@pm.me",
@@ -18,13 +18,13 @@
   "devDependencies": {
     "@astrojs/mdx": "^7.0.5",
     "@darkstar/prettier": "1.0.1",
-    "astro": "^7.1.5",
+    "astro": "^7.1.6",
     "sass": "^1.102.0",
     "sharp": "^0.35.3"
   },
   "dependencies": {
     "@catppuccin/palette": "^1.8.0",
-    "@lucide/astro": "^1.27.0",
+    "@lucide/astro": "^1.28.0",
     "@tailwindcss/vite": "^4.3.3",
     "gsap": "^3.15.0",
     "tailwindcss": "^4.3.3"
