@@ -1,0 +1,106 @@
+---
+title: 'Wie LLMs wirtschaftlicher arbeiten'
+description:
+  'Wie Prompt-Caching, getrennte Arbeitskontexte, kompakte Übergaben und eine
+  agentengerechte Codebase die Kosten von LLMs reduzieren.'
+summary:
+  'Effiziente LLM-Nutzung beginnt nicht erst beim Prompt. Wer Cache Misses
+  vermeidet, Aufgaben sauber trennt, Kontext gezielt dokumentiert und seine
+  Codebase für LLMs verständlich strukturiert, spart Tokens und reduziert
+  kostspielige Korrekturschleifen.'
+topic: 'ki'
+tags:
+  - KI
+  - Token-Effizienz
+  - Prompt Caching
+  - Agentic Coding
+  - AGENTS.md
+  - Softwareentwicklung
+image: '../../images/blog/andy-hermawan-O1jUvZX9DOA-unsplash.jpg'
+imageAlt: ''
+---
+
+## Token-Effizienz beim Einsatz von LLMs
+
+Der Einsatz von LLMs in der Softwareentwicklung bietet enormes Potenzial, bringt
+jedoch eine neue Form der Kostenrechnung mit sich. Die Effizienz dieser Systeme
+hängt massgeblich vom Verständnis der _Token-Ökonomie_ ab, da unvorhergesehene
+Faktoren die Kosten einer einzelnen Abfrage vervielfachen können. Durch gezielte
+Strategien lassen sich die Betriebskosten senken und die Qualität der Ergebnisse
+steigern.
+
+## Die Token-Struktur
+
+Die Abrechnung erfolgt über verschiedene Token-Typen, deren Kosten stark
+variieren:
+
+- **Input Tokens:** Die an das LLM gesendeten Informationen, bestehend aus dem
+  aktuellen Prompt und dem bisherigen Chat-Verlauf.
+- **Output Tokens:** Die generierten Antworten sowie die im Hintergrund
+  ablaufenden _Reasoning Tokens_, welche in der Regel deutlich teurer sind als
+  Input-Tokens.
+- **Cached Input Tokens:** Eine wesentliche Optimierung stellt das Caching von
+  Input-Tokens dar. Wiederholen sich Verläufe in einem Chat, können diese Daten
+  bis zu zehnmal günstiger verarbeitet werden als neue Input-Tokens.
+
+## Ursachen für Kostensteigerungen durch Cache Misses
+
+Ein sogenannter _Cache Miss_ führt dazu, dass die Kostenvorteile des Cachings
+verloren gehen und der volle Preis für Input-Tokens berechnet wird. Häufige
+Ursachen hierfür sind:
+
+- **Zeitüberschreitung:** Bei einigen Providern, wie etwa Anthropic, verfällt
+  der Cache bereits nach fünf Minuten Inaktivität.
+- **Modellwechsel:** Ein Wechsel des LLM Models oder des Reasoning-Levels
+  innerhalb einer Konversation invalidiert den bestehenden Cache sofort.
+- **Änderungen am System Prompt:** Das Hinzufügen neuer Tools (MCP o.ä.) oder
+  die Anpassung des System Prompts während eines Chats löst eine komplette
+  Neuberechnung aus.
+
+## Strategien zur Optimierung der Interaktion
+
+Zur Maximierung der Effizienz bieten sich verschiedene methodische Ansätze an:
+
+- **Themenbezogene Trennung:** Für neue Aufgabenstellungen sind frische Chats zu
+  bevorzugen, um die Verarbeitung irrelevanter Historien zu vermeiden.
+- **Handover-Protokolle:** Bei längeren Unterbrechungen ist die Erstellung von
+  Zusammenfassungen oder _Handover-Dokumenten_ in Markdown sinnvoll. Dies
+  ermöglicht den späteren Einstieg in einen neuen Chat ohne Informationsverlust
+  durch einen abgelaufenen Cache.
+- **Anpassung des Antwortstils:** Das _Caveman-Framework_ kann genutzt werden,
+  um das LLM zu besonders kurzen und prägnanten Antworten zu bewegen. Obwohl die
+  letzte Antwort oft nicht der grösste Kostentreiber ist, hilft dieser Ansatz,
+  den Fokus auf das Wesentliche zu legen.
+
+## Die Agent Ready Codebase
+
+Eine optimierte Projektstruktur erleichtert einem LLM die Vorhersage der
+nächsten Tokens und reduziert unnötigen Kontext.
+
+- **Standardisierte Dokumentation:** Die Verwendung spezifischer Dateien im
+  Repository unterstützt den Workflow des LLMs:
+  - **`AGENTS.md`:** Enthält grundlegende Instruktionen und Regeln für die
+    Arbeit innerhalb des Repositories.
+  - **`PLANS.md`:** Dient der strukturierten Planung von Aufgaben und einzelnen
+    Schritten.
+- **Progressive Disclosure:** Anstatt alle Informationen in eine einzige Datei
+  zu fassen, sollten Dokumente wie `AGENTS.md` lediglich auf spezialisierte
+  Dateien referenzieren (z. B. für Datenbankentscheidungen oder API-Strukturen).
+  Das LLM erhält so immer nur die für den aktuellen Task notwendigen Daten.
+- **Einsatz etablierter Technologien:** Frameworks, die prominent in den
+  Trainingsdaten vertreten sind (z. B. Next.js, React, Lodash, Prisma ORM etc.),
+  führen zu präziseren Ergebnissen und weniger Fehlversuchen als
+  Nischenlösungen.
+
+## Qualitätssicherung durch Selbstverifikation
+
+Kostenintensive Korrekturschleifen lassen sich durch den Zwang zur
+Selbstverifikation vermeiden. Das LLM sollte Lösungen nicht nur vorschlagen,
+sondern deren Funktionalität beweisen, beispielsweise durch:
+
+- Automatisierte Tests (Smoke-, Unit- oder E2E-Tests).
+- Die Erstellung von Screenshots des funktionierenden UI.
+
+Durch diese Kombination aus technischer Strukturierung und methodischer
+Prozessführung wird die Nutzung von KI-Agenten zu einem hocheffizienten und
+kalkulierbaren Werkzeug in der modernen Entwicklungsumgebung.
