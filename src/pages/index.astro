@@ -1,0 +1,99 @@
+---
+import { flavors } from '@catppuccin/palette';
+import '@catppuccin/palette/css/catppuccin.css';
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <link rel='icon' type='image/svg+xml' href='/img/favicon.svg' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <meta
+      name='description'
+      content='saving the world. by design.'
+    />
+    <meta name='color-scheme' content='light dark' />
+    <meta
+      name='theme-color'
+      content={flavors.latte.colors.base.hex}
+      media='(prefers-color-scheme: light)'
+    />
+    <meta
+      name='theme-color'
+      content={flavors.mocha.colors.base.hex}
+      media='(prefers-color-scheme: dark)'
+    />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&display=swap'
+      rel='stylesheet'
+    />
+    <title>saving the world. by design.</title>
+  </head>
+  <body>
+    <main>
+      <h1>
+        saving the world.
+        <br />
+        <span class='highlight'>by design.</span>
+      </h1>
+    </main>
+  </body>
+</html>
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    --background: var(--ctp-latte-base);
+    --text: var(--ctp-latte-text);
+    --highlight: var(--ctp-latte-overlay0);
+    color-scheme: light;
+    background: var(--background);
+    color: var(--text);
+    font-family: 'Geist', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  main {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    min-height: 100vh;
+    min-height: 100svh;
+    margin-inline: auto;
+    padding: 32px clamp(24px, 5vw, 64px);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 6vw, 7rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+
+  .highlight {
+    color: var(--highlight);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(html) {
+      --background: var(--ctp-mocha-base);
+      --text: var(--ctp-mocha-text);
+      --highlight: var(--ctp-mocha-overlay0);
+      color-scheme: dark;
+    }
+  }
+</style>
